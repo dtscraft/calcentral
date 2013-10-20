@@ -23,8 +23,8 @@ module CalcentralCaching
           :namespace => ServerRuntime.get_settings["git_commit"])
     end
 
-    config.cache_store.logger = Logger.new("#{CalcentralLogging.log_root}/cache_#{Time.now.strftime('%Y-%m-%d')}.log")
-    config.cache_store.logger.level = Settings.cache.log_level
+    #config.cache_store.logger = Logger.new("#{CalcentralLogging.log_root}/cache_#{Time.now.strftime('%Y-%m-%d')}.log")
+    #config.cache_store.logger.level = Settings.cache.log_level
 
   end
 

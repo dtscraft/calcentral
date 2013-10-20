@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 source 'http://torquebox.org/rubygems'
 
+#https://devcenter.heroku.com/articles/ruby-support#rails-3-x-applications
+ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.4'
 # The core framework
 # https://github.com/rails/rails
 gem "rails", "3.2.15"

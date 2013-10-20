@@ -20,7 +20,7 @@ production:
   host: <%= Settings.postgres.host %>
   port: <%= Settings.postgres.port %>
 
-test:
+test: &test
   adapter: sqlite3
   encoding: utf8
   database: 'db/test.sqlite3'
@@ -48,3 +48,6 @@ campusdb:
   pool: <%=Settings.campusdb.pool %>
   timeout: <%=Settings.campusdb.timeout %>
 
+
+cucumber:
+  <<: *test

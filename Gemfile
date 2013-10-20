@@ -176,4 +176,6 @@ group :test, :testext do
   gem "rspec_junit_formatter", "~> 0.1.2"
 
   gem "webmock", "~> 1.11.0"
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
 end

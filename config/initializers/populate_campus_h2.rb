@@ -139,7 +139,7 @@
         "STUDENT_LDAP_UID" NUMERIC,
         "BYTES" NUMERIC,
         "UPDATE_DATE" TIMESTAMP,
-        "PHOTO" BLOB
+        "PHOTO" bytea
         );
 
         DROP TABLE IF EXISTS CALCENTRAL_STUDENT_INFO_VW;

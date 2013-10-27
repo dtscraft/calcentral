@@ -1,4 +1,4 @@
 class Category < ActiveRecord::Base
-  attr_accessible :type
+  attr_accessible :name
   has_many :clubs
 end

@@ -8,27 +8,46 @@ Feature: When browsing events should if I filter events by club,
 Background:
     Given the following events exist
     #http://www.ruby-doc.org/gems/docs/d/davidtrogers-cucumber-0.6.2/Cucumber/Ast/Table.html
-    | event | start_time | end_time |
-    | Aladdin Party           | 25-Nov-2014 | 25-Nov-2014  |
-    | The Terminator  Party   | 26-Oct-2012 | 26-Oct-2012  |
-    | When Harry Met Sally  Party | 21-Jul-2013 | 21-Jul-2013  |
-    | The Help Pary           | 10-Aug-2011 | 10-Aug-2011  |
-    | Chocolat Party               | 5-Jan-2013  | 5-Jan-2013   |
-    | Amelie  Party | 25-Apr-2013 | 25-Apr-2013  |
-    | 2013: A Space Odyssey  Party  | 6-Apr-2014 | 6-Apr-2014   |
-    | The Incredibles    Party| 5-Nov-2012 | 5-Nov-2012   |
-    | Raiders of the Lost Ark Party | 12-Jun-2012 | 12-Jun-2012  |
-    | Chicken Run Party            | 21-Jun-2015 | 21-Jun-2015  |
+    | events                     | type        | start_time                 |  end_time                    | club     |
+    | Cal Perfomance             | social      | 25-Oct-2013 05:00:00 -0700 | 25-Oct-2013  08:00:00 -0700  | school   |
+    | Men's Soccer Game          | sport       | 23-Oct-2013 06:00:00 -0700 | 23-Oct-2013  09:00:00 -0700  | soccer   |
+    | Cal Football Game          | sport       | 26-Oct-2013 06:00:00 -0700 | 26-Oct-2013  09:00:00 -0700  | football |
+    | Hackaton                   | engineering | 25-Oct-2013 7:00:00 -0700  | 25-Oct-2013  06:00:00 -0700  | HKN      |
+    | Schedule planning Workshop | academic    | 20-Oct-2013 12:00:00 -0700 | 21-Oct-2013  07:00:00 -0700  | school   |
+    | Facebook infosession       | infosession | 23-Oct-2013 13:00:00 -0700 | 24-Oct-2013  08:00:00 -0700  | CS       |
+    | HP infosession             | infosession | 22-Oct-2013 14:00:00 -0700 | 23-Oct-2013  09:00:00 -0700  | CS       |
+    | Enginnering series talk    | engineering | 23-Oct-2013 15:00:00 -0700 | 24-Oct-2013  10:00:00 -0700  | EECS     |
+    | Free stress from midterms  | social      | 24-Oct-2013 16:00:00 -0700 | 25-Oct-2013  11:00:00 -0700  | ME       |
 
 Scenario: no clubs are added
-    Then I should see all the events for this week
+    Then I should not see events with type: school, soccer, football, CS, EECS, ME
 
-Scenario: restrict to events belonging to 'HKN' or 'IEEE' organizations
-    And I type in "IEEE"
-    And I press "add_club"
-    And I type in "HKN"
-    And I press "add_club"
-    Then I should see all the events within the next week for the clubs "HKN, IEEE"
+Scenario: restrict to events belonging to 'HKN' or 'CS' organizations
+    When I check the following events: HKN, CS 
+    And I press Refresh
+    Then I should see events with type: HKN, CS
+    | events                     | type        | date         |  time        | club     |
+    | Hackaton                   | engineering | 25-Oct-2013  | 25-Oct-2013  | HKN      |
+    | Facebook infosession       | infosession | 24-Oct-2013  | 24-Oct-2013  | CS       |
+    | HP infosession             | infosession | 23-Oct-2013  | 23-Oct-2013  | CS       |
+
+    When I check the following events: HKN
+    And I press Refresh
+    Then I should see events with type: HKN, CS
+    | events                     | type        | date         |  time        | club     |
+    | Hackaton                   | engineering | 25-Oct-2013  | 25-Oct-2013  | HKN      |
+    
+    
 
 Scenario: all clubs checkbox checked
-    Then I should see all the events for this week
+    Then I should see events with type: school, soccer, football, CS, EECS, ME
+    | events                     | type        | date         |  time        | club     |
+    | Cal Perfomance             | social      | 25-Oct-2013  | 25-Oct-2013  | school   |
+    | Men's Soccer Game          | sport       | 23-Oct-2013  | 23-Oct-2013  | soccer   |
+    | Cal Football Game          | sport       | 26-Oct-2013  | 26-Oct-2013  | football |
+    | Hackaton                   | engineering | 25-Oct-2013  | 25-Oct-2013  | HKN      |
+    | Schedule planning Workshop | academic    | 21-Oct-2013  | 21-Oct-2013  | school   |
+    | Facebook infosession       | infosession | 24-Oct-2013  | 24-Oct-2013  | CS       |
+    | HP infosession             | infosession | 23-Oct-2013  | 23-Oct-2013  | CS       |
+    | Enginnering series talk    | engineering | 24-Oct-2013  | 24-Oct-2013  | EECS     |
+    | Free stress from midterms  | social      | 25-Oct-2013  | 25-Oct-2013  | ME       |

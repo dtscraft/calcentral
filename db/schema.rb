@@ -13,6 +13,22 @@
 
 ActiveRecord::Schema.define(:version => 2013081414003322) do
 
+  create_table "clubs", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "description"
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "link_categories", :force => true do |t|
     t.string   "name",                          :null => false
     t.string   "slug",                          :null => false

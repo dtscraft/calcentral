@@ -7,7 +7,7 @@ Feature: Submit facebook urls for a club and sync with callink.berkeley.edu
 Background: movies have been added to database
 
   Given the following movies exist:
-  Facebook link 
+  
 
   And  I am on the Calcentral web page
 

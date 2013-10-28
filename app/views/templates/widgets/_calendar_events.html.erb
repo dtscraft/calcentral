@@ -1,16 +1,41 @@
-<style> 
-
-</style>
-<br />
+<br/>
 <div class="cc-widget-title">
   <h2>Events</h2>
 </div>
-<ul>
-  <li> CS Club</li>
-<li><input type="text" name="filterByName"></input><input type="text" name="filterByName"></input></li>
-<li><input type="text" name="filterByCategory"></input><li>
-<li><input type="text" name="filterByClubName"></input></li>
+
+<table style="width:100%;">
+    <tbody>
+    <tr>
+        <th>Time</th>
+        <th>Name</th>
+    </tr>
+    <tr style="display:none;" class="event-result-template">
+        <td class="event-start-time"></td>
+        <td class="event-name"></td>
+    </tr>
+    <tr style="display:none;" id="no-events-placeholder">
+        <td>No Events</td>
+    <tr>
+    </tbody>
+</table>
+
+</table>
+
 </ul>
+<form id="callink-form">
+    <strong> Search </strong>
+    <ul>
+      <li>
+        Category
+        <input type="text" name="category"></input>
+      </li>
+      <li>
+        Club
+        <input type="text" name="club"></input>
+      </li>
+    </ul>
+    <button type="submit">Search</button>
+</form>
 
 
 

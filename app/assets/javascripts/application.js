@@ -16,4 +16,6 @@
 //= require pikaday
 //= require angular-unstable
 //= require angular-sanitize
+//= require jquery
+//= require jquery_ujs
 //= require_tree .

@@ -6,6 +6,11 @@ Calcentral::Application.routes.draw do
   # first created -> highest priority.
 
   root :to => 'bootstrap#index'
+  scope 'api', :as => :api do
+      scope 'callink', :as => :callink do
+          get 'events' => "Api::Callink::Events#search", :as => :events
+      end
+  end
 
   # Rails API endpoints.
   match '/api/my/am_i_logged_in' => 'user_api#am_i_logged_in', :as => :mystatus, :defaults => { :format => 'json' }

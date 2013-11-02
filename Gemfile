@@ -181,4 +181,5 @@ group :test, :testext do
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'autotest'
+  gem 'factory_girl_rails'
 end

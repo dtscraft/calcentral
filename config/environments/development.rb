@@ -1,3 +1,6 @@
+require 'factory_girl'
+require 'faker'
+FactoryGirl.find_definitions
 Calcentral::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 

@@ -182,4 +182,6 @@ group :test, :testext do
   gem 'cucumber-rails-training-wheels'
   
   gem 'factory_girl_rails'
+  gem 'faker'
 end
+

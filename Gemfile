@@ -180,6 +180,6 @@ group :test, :testext do
   gem "webmock", "~> 1.11.0"
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
-  gem 'autotest'
+  
   gem 'factory_girl_rails'
 end

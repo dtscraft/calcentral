@@ -45,7 +45,7 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-Given /^I am logged into calcentral"(.*)"$/ do |login|
+Then /^I am logged into calcentral"(.*)"$/ do |login|
   visit '/accounts/login'
   fill_in 'user_login', :with => login
   fill_in 'user_password', :with => login + "_1"

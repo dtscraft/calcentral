@@ -45,6 +45,18 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+Given /^I am logged into calcentral"(.*)"$/ do |login|
+  visit '/accounts/login'
+  fill_in 'user_login', :with => login
+  fill_in 'user_password', :with => login + "_1"
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content('Login successful')
+  else
+    assert page.has_content?('Login successful')
+  end
+end
+
 When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -119,6 +131,8 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
     assert page.has_xpath?('//*', :text => regexp)
   end
 end
+
+
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
   if page.respond_to? :should

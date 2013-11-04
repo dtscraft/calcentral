@@ -1,4 +1,4 @@
-Feature: Retrieve events from Callink API.
+Feature: Retrieve events from Calink API.
 
 	 As a student
 	 So I can see detail events on campus
@@ -19,12 +19,23 @@ Background: events have been added to database
    
    And I am on the home page  ######
 
-Scenario: display views of events in a list
+Scenario: display views of Calink events in a list
 	 
-    When I click "ListView"  ######
+    Given I am on the CalCentral home page
+    And I click on list view
     Then I should see "Monday"
     And I should see "career fair"
     And I should see "Haas Gala"
     And I should see "Tuesday"
     And I should see "Google info"
     And I should see "EECS Alumni"
+
+
+
+Scenario: Try to view Calink events without retrieving from Calink Api
+ 
+  Given I am on the CalCentral home page
+  And I click on list view
+  Then I should see "Monday"
+  And I should see "Cal Link not connected"
+  Then I should be on the settings page

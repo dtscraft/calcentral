@@ -1,6 +1,6 @@
 <footer class="row" data-ng-controller="FooterController" data-ng-cloak role="complementary">
   <div data-ng-class="{'cc-footer-actingas':(api.user.profile.acting_as_uid)}">
-    <div data-ng-click="footer.showInfo=!footer.showInfo" data-cc-accessible-focus-directive class="cc-footer-berkeley">
+    <div id="footer-show-info"data-ng-click="footer.showInfo=!footer.showInfo" data-cc-accessible-focus-directive class="cc-footer-berkeley">
       <div class="hide-for-small cc-left">
         <%= render 'templates/svg/uc_berkeley_logo' %>
       </div>
@@ -40,7 +40,7 @@
         <h3>Basic Auth</h3>
         <p><input data-ng-model="basicauth.login" name="email" type="text" placeholder="Login" required /></p>
         <p><input data-ng-model="basicauth.password" autocomplete="off" name="password" type="password" placeholder="Password" required /></p>
-        <p><button class="cc-button cc-button-blue" type="submit">Login</button></p>
+        <p><button id="basic-login-btn"class="cc-button cc-button-blue" type="submit">Login</button></p>
       </form>
     </div>
   </div>

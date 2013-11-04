@@ -71,3 +71,6 @@ features:
   activity_to_task: true
   financials: true
   telebears: true
+developer_auth:
+  enabled: false
+  password: topsecret!

@@ -183,7 +183,8 @@ group :test, :testext do
   
   gem 'cucumber-rails-training-wheels'
   gem 'autotest'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails',  :require => false
   gem 'faker'
+  gem 'ruby-debug'
 end
 

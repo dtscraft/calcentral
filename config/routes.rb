@@ -69,7 +69,7 @@ Calcentral::Application.routes.draw do
 
   match '/auth/cas/callback' => 'sessions#lookup'
   match '/auth/failure' => 'sessions#failure'
-  if Settings.developer_auth.enabled
+  if true #Settings.developer_auth.enabled
     match '/basic_auth_login' => 'sessions#basic_lookup'
     match '/logout' => 'sessions#destroy', :as => :logout
   else

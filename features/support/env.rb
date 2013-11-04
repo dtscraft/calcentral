@@ -3,6 +3,9 @@
 # newer version of cucumber-rails. Consider adding your own code to a new file
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
+require 'factory_girl_rails'
+require 'faker'
+#FactoryGirl.find_definitions
 
 require 'simplecov'
 SimpleCov.start 'rails'

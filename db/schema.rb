@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(:version => 2013081414003322) do
 
+  create_table "categories", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "club_id"
+    t.string   "name"
+  end
+
   create_table "clubs", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -25,8 +32,10 @@ ActiveRecord::Schema.define(:version => 2013081414003322) do
     t.datetime "end_time"
     t.string   "description"
     t.string   "name"
+    t.string   "club"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "club_id"
   end
 
   create_table "link_categories", :force => true do |t|

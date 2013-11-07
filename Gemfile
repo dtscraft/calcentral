@@ -133,7 +133,7 @@ group :development, :test , :testext do
   gem "jasmine-jquery-rails", "~> 1.4.2"
 
   # We need to specify the latest webdriver here, to support the latest firefox
-  gem "selenium-webdriver", "~> 2.32.1"
+  gem "selenium-webdriver", "~> 2.35.1" #http://stackoverflow.com/questions/18114544/seleniumwebdrivererrorjavascripterror-waiting-for-evaluate-js-load-failed
 
   gem "therubyrhino", "~> 2.0.1"
 
@@ -186,5 +186,6 @@ group :test, :testext do
   gem 'factory_girl_rails',  :require => false
   gem 'faker'
   gem 'ruby-debug'
+  gem 'capybara-webkit'
 end
 

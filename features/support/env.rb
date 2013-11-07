@@ -10,6 +10,18 @@ require 'faker'
 require 'simplecov'
 SimpleCov.start 'rails'
 require 'cucumber/rails'
+Capybara.default_wait_time = 60
+#We need this to fix the random timeout error that we were seeing in CI.
+# May be related to: http://code.google.com/p/selenium/issues/detail?id=1439
+  
+Capybara.register_driver :selenium_with_long_timeout do |app|
+    #https://gist.github.com/msgehard/922296
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.timeout = 120
+    Capybara::Selenium::Driver.new(app, :browser => :firefox, :http_client => client)
+end
+Capybara.default_driver = :selenium_with_long_timeout
+
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any

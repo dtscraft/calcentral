@@ -7,15 +7,16 @@ Feature: When browsing events should if I filter events by club,
 
 Background:
     Given there are upcoming events
-    When I am logged into calcentral
-    When I go to the dashboard
+    And I am logged into calcentral
+    And I go to the dashboard
 
 Scenario: no clubs are in the input field
-    When I press "search-events"
-    Then I should see all events
+    Then I should see "My Events"
+    #When I press "search-events"
+    #Then I should see all events
 
 Scenario: restrict to events belonging to "Club_1"
     When I fill in "club" with "Club_1"
-    When I press "search-events"
+    And I press "search-events"
     Then I should see events for "Club_1"
 

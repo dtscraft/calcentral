@@ -57,25 +57,16 @@ end
 
 Then /^I am logged into calcentral$/ do
   visit '/'
-  fill_in 'email', :with => '61889'
-  fill_in 'password', :with => 'topsecret!'
-  click_button 'basic-login-btn'
-  if page.respond_to? :should
-    puts page.body
-    debugger
-    page.should have_content('My Dashboard')
-  else
-    puts page.body
-    debugger
-    assert page.has_content?('My Dashboard')
-  end
+  page.execute_script("$('#footer-show-info').click()")
+  find("input[name=email]").set('61889')
+  find("input[name=password]").set('topsecret!')
+  page.execute_script("$('#basic-login-btn').click()")
 end
+
 
 When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
-  puts page.body
-  debugger
-  puts "a"
+  puts page.body if page_name == "the dashboard"
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|

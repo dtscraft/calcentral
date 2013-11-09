@@ -4,6 +4,8 @@ source 'http://torquebox.org/rubygems'
 # The core framework
 # https://github.com/rails/rails
 gem 'database_cleaner'
+gem 'mini_fb'
+gem 'fakeweb'
 
 gem "rails", "3.2.15"
 

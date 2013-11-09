@@ -187,5 +187,10 @@ group :test, :testext do
   gem 'faker'
   gem 'ruby-debug'
   gem 'capybara-webkit'
+  gem 'launchy'
+  #gem 'rspec'
+  #gem 'cucumber'
+  gem 'selenium-client'
+  
 end
 

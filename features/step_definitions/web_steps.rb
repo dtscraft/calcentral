@@ -65,8 +65,10 @@ end
 
 
 When /^(?:|I )go to (.+)$/ do |page_name|
+  #visit "http://www.youtube.com"
+  #visit 'http://localhost:3000/dashboard'
   visit path_to(page_name)
-  puts page.body if page_name == "the dashboard"
+  #puts page.body if page_name == "the dashboard"
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|

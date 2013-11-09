@@ -3,9 +3,17 @@
 # newer version of cucumber-rails. Consider adding your own code to a new file
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
+
+
 require 'factory_girl_rails'
 require 'faker'
 #FactoryGirl.find_definitions
+
+#require 'selenium-webdriver'
+#require 'capybara/cucumber'
+#require 'rspec/expectations'
+
+#require 'capybara/rails'
 
 require 'simplecov'
 SimpleCov.start 'rails'
@@ -19,8 +27,15 @@ Capybara.register_driver :selenium_with_long_timeout do |app|
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 120
     Capybara::Selenium::Driver.new(app, :browser => :firefox, :http_client => client)
+    #@session = Capybara::Session.new(:selenium,app)
+    #capybara_driver = Capybara::Selenium::Driver.new(app, :browser => :firefox)#, :http_client => client)
+	#driver = capybara_driver.browser
+
+	#wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+	#wait.until { driver.find_element(:link_text => "Search").displayed? }
 end
 Capybara.default_driver = :selenium_with_long_timeout
+
 
 
 # Capybara defaults to CSS3 selectors rather than XPath.

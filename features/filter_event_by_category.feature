@@ -10,10 +10,9 @@ Background:
     When I go to the dashboard
 
 Scenario: no categories are chosen all events should be visible
-    When I press "search-events"
+    When I press "Search"
     Then I should see all events
 
 Scenario: restrict to events with 'social' or 'engineering' category
     When I fill in "category" with "Category_1"
     Then I should see events for categories "Category_1"
-

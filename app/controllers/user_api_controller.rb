@@ -26,14 +26,14 @@ class UserApiController < ApplicationController
       end
       user_data = UserApi.new(session[:user_id]).get_feed
       render :json => {
-          :is_basic_auth_enabled => true, #Settings.developer_auth.enabled,
+          :is_basic_auth_enabled => Settings.developer_auth.enabled,
           :is_logged_in => true,
           :features => Settings.features.marshal_dump,
           :acting_as_uid => acting_as_uid
       }.merge!(user_data).to_json
     else
       render :json => {
-          :is_basic_auth_enabled => true, #Settings.developer_auth.enabled,
+          :is_basic_auth_enabled => Settings.developer_auth.enabled,
           :is_logged_in => false,
           :features => Settings.features.marshal_dump
       }.to_json

@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(:version => 2013081414003322) do
 
+  create_table "categories", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "club_id"
+    t.string   "name"
+  end
+
   create_table "clubs", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -25,8 +32,10 @@ ActiveRecord::Schema.define(:version => 2013081414003322) do
     t.datetime "end_time"
     t.string   "description"
     t.string   "name"
+    t.string   "club"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "club_id"
   end
 
   create_table "link_categories", :force => true do |t|
@@ -107,8 +116,13 @@ ActiveRecord::Schema.define(:version => 2013081414003322) do
     t.string   "uid"
     t.string   "preferred_name"
     t.datetime "first_login_at"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "fb_user"
+    t.string   "fb_provider"
+    t.string   "fb_name"
+    t.string   "fb_oauth_token"
+    t.datetime "fb_oauth_expires_at"
   end
 
   add_index "user_data", ["uid"], :name => "index_user_data_on_uid", :unique => true

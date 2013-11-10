@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 source 'http://torquebox.org/rubygems'
 
+gem 'omniauth-facebook'
+
 # The core framework
 # https://github.com/rails/rails
 gem 'database_cleaner'

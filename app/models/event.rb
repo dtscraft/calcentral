@@ -19,7 +19,7 @@ class Event < ActiveRecord::Base
 
 
   def self.getFacebookEvents(facebook_page_id)
-     MiniFB.fql(@@access_token,"SELECT eid, name, location, description, start_time, end_time, timezone FROM event where creator = #{facebook_page_id}")
+     MiniFB.fql(@@access_token,"SELECT eid, name, location, description, start_time, end_time, timezone FROM event where creator = #{CGI.escape(facebook_page_id)}") if facebook_page_id.present?
   end
 
 

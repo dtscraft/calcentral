@@ -1,6 +1,6 @@
 
 Given(/^that there are events$/) do
-   
+			find("span", text: "Event Name").click
    # suppose to get fake events here.  It can be passed in from feature file or stubbing fake events
 
 

@@ -1,0 +1,10 @@
+Given /I want facebook group events from "(.*)"/ do |url| 
+      facebook_page_id = Event.facebookIDFromFacebookPageUrl(url)
+      url = "https://graph.facebook.com/#{facebook_page_id}/events?access_token=#{@@access_token}"
+      facebook_page =  File.open( File.join(File.expand_path(File.dirname(__FILE__)), "..", "support", "facebook_page_fake.json"), "r").read
+      facebook_page = Fakeweb.register_uri(:get, url, :body => facebook_page)
+      for event in facebook_page.data
+        url1 = "http://graph.facebook.com/#{event['id']}?access_token=#{@@access_token}"
+        event_page = File.open( File.join(File.expand_path(File.dirname(__FILE__)), "..", "support", "event_page_fake.json"), "r").read
+        Fakeweb.register_uri(:get, url1, :body => event_page)
+  

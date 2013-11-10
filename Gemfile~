@@ -4,8 +4,6 @@ source 'http://torquebox.org/rubygems'
 # The core framework
 # https://github.com/rails/rails
 gem 'database_cleaner'
-gem 'mini_fb'
-gem 'fakeweb'
 
 gem "rails", "3.2.15"
 
@@ -38,9 +36,6 @@ gem "google-api-client", "~> 0.6.4"
 
 # LTI support
 gem 'ims-lti', :git => "https://github.com/instructure/ims-lti.git"
-
-# Mini_fb
-gem 'mini_fb'
 
 # for VCR http recording tool
 gem "vcr", "~> 2.5.0"
@@ -138,7 +133,7 @@ group :development, :test , :testext do
   gem "jasmine-jquery-rails", "~> 1.4.2"
 
   # We need to specify the latest webdriver here, to support the latest firefox
-  gem "selenium-webdriver", "~> 2.35.1" #http://stackoverflow.com/questions/18114544/seleniumwebdrivererrorjavascripterror-waiting-for-evaluate-js-load-failed
+  gem "selenium-webdriver", "~> 2.32.1"
 
   gem "therubyrhino", "~> 2.0.1"
 
@@ -191,11 +186,5 @@ group :test, :testext do
   gem 'factory_girl_rails',  :require => false
   gem 'faker'
   gem 'ruby-debug'
-  gem 'capybara-webkit'
-  gem 'launchy'
-  #gem 'rspec'
-  #gem 'cucumber'
-  gem 'selenium-client'
-  
 end
 

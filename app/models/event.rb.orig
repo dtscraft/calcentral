@@ -9,17 +9,28 @@ class Event < ActiveRecord::Base
   attr_accessible :description, :end_time, :name, :start_time, :facebook_id
   belongs_to :club
   has_many :categories, :through => :club, :source => :categories	
+<<<<<<< Updated upstream
   def self.get_facebook_group_events(graph_id, user_access_token)
     MiniFB.get(user_access_token, graph_id , :type => "events")
   end
+end
+=======
 
 
 
   @@access_token = "173006739573053|DPlwPfobC-caWfyYKw5rU-aKrjM"
 
 
-  def self.getFacebookEvents(facebook_page_id)
-     MiniFB.fql(@@access_token,"SELECT eid, name, location, description, start_time, end_time, timezone FROM event where creator = #{CGI.escape(facebook_page_id)}") if facebook_page_id.present?
+  def getFacebookEvents(facebook_page_id)
+     facebook_page = MiniFB.get(@@access_token, facebook_page_id, :type => 'events') 
+   
+     for event in facebook_page.data
+        event_page = getToFbEventPage(event['id'])
+       
+        newEvent = Event.create!(:name => event_page['name'], :start_time => event_page['start_time'], :description => event_page['description'], :end_time => event_page['end_time'])
+        
+     end
+     
   end
 
 
@@ -38,3 +49,4 @@ class Event < ActiveRecord::Base
 end 
 
 
+>>>>>>> Stashed changes

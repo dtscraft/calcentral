@@ -25,17 +25,19 @@ ActiveRecord::Schema.define(:version => 2013081414003322) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "facebook_id"
   end
 
   create_table "events", :force => true do |t|
     t.datetime "start_time"
     t.datetime "end_time"
-    t.string   "description"
+    t.text     "description"
     t.string   "name"
     t.string   "club"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "club_id"
+    t.string   "facebook_id"
   end
 
   create_table "link_categories", :force => true do |t|

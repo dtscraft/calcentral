@@ -9,9 +9,12 @@ class Event < ActiveRecord::Base
   attr_accessible :description, :end_time, :name, :start_time, :facebook_id
   belongs_to :club
   has_many :categories, :through => :club, :source => :categories	
+<<<<<<< Updated upstream
   def self.get_facebook_group_events(graph_id, user_access_token)
     MiniFB.get(user_access_token, graph_id , :type => "events")
   end
+end
+=======
 
 
 
@@ -46,3 +49,4 @@ class Event < ActiveRecord::Base
 end 
 
 
+>>>>>>> Stashed changes

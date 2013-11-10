@@ -6,6 +6,10 @@ When /I get facebook events for Facebook Group "([^"]*)" with user access token 
       FakeWeb.register_uri(:get, url, :body => body)
       club = (Club.find_by_facebook_id(graph_id) or Club.create!(facebook_id: graph_id))
       events = club.get_facebook_group_events(user_access_token)
+      if user_access_token==" "
+        assert events == nil
+        break
+      end
       events.data.each{ |event|
           new_event = Event.create!(name: event.name, start_time: event.start_time, end_time: event.end_time, facebook_id: event.id)
           club.events << new_event and club.save!
@@ -15,3 +19,4 @@ end
 Then /there should be (.*) events for facebook club (.*)/ do |n, facebook_id|
     assert Club.find_by_facebook_id!(facebook_id).events.count == n.to_i, "got #{Club.find_by_facebook_id!(facebook_id).events.count} events instead of #{n} events for club with facebook id #{facebook_id}"
 end
+

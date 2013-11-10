@@ -4,9 +4,9 @@ When /I get facebook events for Facebook Group "([^"]*)" with user access token 
       url = "https://graph.facebook.com/#{graph_id}/events?access_token=#{user_access_token}"
       body = File.open( File.join(File.expand_path(File.dirname(__FILE__)), "..", "support", "events.json"), "r").read
       FakeWeb.register_uri(:get, url, :body => body)
-      events = Event.get_facebook_group_events(graph_id, user_access_token)
+      club = (Club.find_by_facebook_id(graph_id) or Club.create!(facebook_id: graph_id))
+      events = club.get_facebook_group_events(user_access_token)
       events.data.each{ |event|
-          club = (Club.find_by_facebook_id(graph_id) or Club.create!(facebook_id: graph_id))
           new_event = Event.create!(name: event.name, start_time: event.start_time, end_time: event.end_time, facebook_id: event.id)
           club.events << new_event and club.save!
       }

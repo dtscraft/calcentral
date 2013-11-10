@@ -2,4 +2,8 @@ class Club < ActiveRecord::Base
   attr_accessible :description, :name, :facebook_id
   has_many :events 
   has_many :categories
+  def get_facebook_group_events(user_access_token)
+    MiniFB.get(user_access_token, facebook_id , :type => "events") if facebook_id
+  end
+
 end

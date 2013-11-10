@@ -1,19 +1,17 @@
-Given /I have user access token/  do
-	  body = 'you'
-      FakeWeb.register_uri(:get, "http://google.com/", :body => body)
-      response = Net::HTTP.get(URI.parse("http://google.com/"))
-      assert response == body
+Given /I want facebook events for facebook group "([^"]*)"/ do |club_id| end
+
+When /I get facebook events for Facebook Group "([^"]*)" with user access token "([^"]*)"/  do | graph_id, user_access_token|
+      url = "https://graph.facebook.com/#{graph_id}/events?access_token=#{user_access_token}"
+      body = File.open( File.join(File.expand_path(File.dirname(__FILE__)), "..", "support", "events.json"), "r").read
+      FakeWeb.register_uri(:get, url, :body => body)
+      events = Event.get_facebook_group_events(graph_id, user_access_token)
+      events.data.each{ |event|
+          club = (Club.find_by_facebook_id(graph_id) or Club.create!(facebook_id: graph_id))
+          new_event = Event.create!(name: event.name, start_time: event.start_time, end_time: event.end_time, facebook_id: event.id)
+          club.events << new_event and club.save!
+      }
 end
 
-
-Given /I want facebook events for club 1/  do
-	
-end
-
-When /I run a background/  do
-	
-end
-
-Then /I should get all facebook events for club 1/  do
-	
+Then /there should be (.*) events for facebook club (.*)/ do |n, facebook_id|
+    assert Club.find_by_facebook_id!(facebook_id).events.count == n.to_i, "got #{Club.find_by_facebook_id!(facebook_id).events.count} events instead of #{n} events for club with facebook id #{facebook_id}"
 end

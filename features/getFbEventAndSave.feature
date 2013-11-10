@@ -7,7 +7,7 @@ Feature: Getting facebook events for an url
 
    Scenario: pull Facebook events successfully to Calcentral
      Given I want facebook events for facebook page "The Berkeley Project"
-     When I get facebook events for Facebook page "https://facebook.com/berkeleyproject"
+     When I get facebook events for facebook page "https://facebook.com/berkeleyproject"
      Then there should be 8 events for Facebook page "313228564146"
 
    

@@ -18,16 +18,8 @@ class Event < ActiveRecord::Base
   @@access_token = "173006739573053|DPlwPfobC-caWfyYKw5rU-aKrjM"
 
 
-  def getFacebookEvents(facebook_page_id)
-     facebook_page = MiniFB.get(@@access_token, facebook_page_id, :type => 'events') 
-   
-     for event in facebook_page.data
-        event_page = getToFbEventPage(event['id'])
-       
-        newEvent = Event.create!(:name => event_page['name'], :start_time => event_page['start_time'], :description => event_page['description'], :end_time => event_page['end_time'])
-        
-     end
-     
+  def self.getFacebookEvents(facebook_page_id)
+     MiniFB.fql(@@access_token,"SELECT eid, name, location, description, start_time, end_time, timezone FROM event where creator = #{facebook_page_id}")
   end
 
 

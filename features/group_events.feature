@@ -8,3 +8,4 @@ Scenario: Get events for a club that  has an associated Facebook Group
     Given I want facebook events for facebook group "Hackers at Berkeley"
     When I get facebook events for Facebook Group "276905079008757" with user access token "fbaccesstoken"
     Then there should be 110 events for facebook club 276905079008757
+ 

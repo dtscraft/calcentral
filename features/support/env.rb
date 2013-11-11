@@ -18,14 +18,14 @@ require 'faker'
 require 'simplecov'
 SimpleCov.start 'rails'
 require 'cucumber/rails'
-Capybara.default_wait_time = 60
+Capybara.default_wait_time = 300
 #We need this to fix the random timeout error that we were seeing in CI.
 # May be related to: http://code.google.com/p/selenium/issues/detail?id=1439
   
 Capybara.register_driver :selenium_with_long_timeout do |app|
     #https://gist.github.com/msgehard/922296
     client = Selenium::WebDriver::Remote::Http::Default.new
-    client.timeout = 120
+    client.timeout = 300
     Capybara::Selenium::Driver.new(app, :browser => :firefox, :http_client => client)
     #@session = Capybara::Session.new(:selenium,app)
     #capybara_driver = Capybara::Selenium::Driver.new(app, :browser => :firefox)#, :http_client => client)

@@ -21,10 +21,15 @@ production:
   port: <%= Settings.postgres.port %>
 
 test: &test
-  adapter: sqlite3
-  encoding: utf8
-  database: 'db/test.sqlite3'
-  pool: <%= Settings.test_sqlite.pool %>
+  adapter: postgresql
+  database: <%= Settings.postgres.database %>
+  encoding: unicode
+  pool: 3
+  timeout: 5000
+  username: <%= Settings.postgres.username %>
+  password: <%= Settings.postgres.password %>
+  host: <%= Settings.postgres.host %>
+  port: <%= Settings.postgres.port %>
 
 testext:
   adapter: postgresql

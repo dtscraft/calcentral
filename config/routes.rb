@@ -13,6 +13,8 @@ Calcentral::Application.routes.draw do
   end
 
   # Rails API endpoints.
+
+
   match '/api/my/am_i_logged_in' => 'user_api#am_i_logged_in', :as => :mystatus, :defaults => { :format => 'json' }
   match '/api/my/status' => 'user_api#mystatus', :as => :mystatus, :defaults => { :format => 'json' }
   match '/api/my/classes' => 'my_classes#get_feed', :as => :my_classes, :defaults => { :format => 'json' }
@@ -81,9 +83,16 @@ Calcentral::Application.routes.draw do
   match '/act_as' => 'sessions#act_as', :via => :post
   match '/stop_act_as' => 'sessions#stop_act_as', :via => :post
 
+  match '/auth/:provider/callback', to: 'sessions#create'
+  match '/auth/failure', to: redirect('/')
+  match '/signout', to: 'sessions#destroy', as: 'signout'
+
   # All the other paths should use the bootstrap page
   # We need this because we use html5mode=true
   #
   # This should ALWAYS be the last rule on the routes list!
   match '/*url' => 'bootstrap#index', :defaults => { :format => 'html' }
+
+
+
 end

@@ -1,6 +1,13 @@
 class SessionsController < ApplicationController
   include ActiveRecordHelper
 
+  def create
+    user = UserData.from_omniauth(env["omniauth.auth"], session[:user_id])
+    session[:fb_user_id] = user.id
+    redirect_to '/dashboard', :notice => "Signed in to facebook!"
+
+  end
+
   def lookup
     auth = request.env["omniauth.auth"]
     continue_login_success auth['uid']
@@ -44,6 +51,7 @@ class SessionsController < ApplicationController
 
   def destroy
     begin
+      session[:fb_user_id] = nil
       reset_session
     ensure
       ActiveRecord::Base.clear_active_connections!

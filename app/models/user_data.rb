@@ -2,8 +2,19 @@ class UserData < ActiveRecord::Base
   include ActiveRecordHelper
 
   after_initialize :log_access
-  attr_accessible :preferred_name, :uid, :first_login_at
+  attr_accessible :preferred_name, :uid, :first_login_at, :fb_uid, :fb_provider, :fb_name, :fb_auth_token, :fb_oauth_expires_at
 
+  def self.from_omniauth(auth, user_id)
+      #signs into the user with calnet id and adds details about their facebook account
+      where( :uid => user_id ).first_or_initialize.tap do  |user|
+        user.fb_provider = auth.provider
+        user.fb_uid = auth.uid
+        user.fb_name = auth.info.name
+        user.fb_oauth_token = auth.credentials.token
+        user.fb_oauth_expires_at = Time.at(auth.credentials.expires_at)
+        user.save!
+      end
+  end
   def self.database_alive?
     is_alive = false
     is_recoverable = false

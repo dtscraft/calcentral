@@ -38,41 +38,12 @@
     <button id="search-events" type="submit">Search</button>
 </form>
 
-
-<table id="hardcocde" style="width:100%;">
-    <thead>
-      <tr>
-        <th><span>Event Name</span></th>
-        <th><span>Date & time</span></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="lalign">EECS Meeting</td>
-        <td>11/14, 6pm </td>
-      </tr>
-      <tr>
-        <td class="lalign">H@B Intro to JS</td>
-        <td>10/18, 8pm</td>
-
-      </tr>
-      <tr>
-        <td class="lalign">Twitter Info Session</td>
-        <td>11/15, 6:30pm</td>
-      </tr>
-      <tr>
-        <td class="lalign">CSUA Hack+</td>
-        <td>11/11, 4pm</td>
-      </tr>
-      <tr>
-        <td class="lalign">Facebook Info Session</td>
-        <td>11/20, 7pm</td>
-      </tr>
-      <tr>
-        <td class="lalign">CSUA General Meeting</td>
-        <td>11/12, 7pm</td>
-      </tr>
-    </tbody>
-  </table>
-
+<div id="user_nav">
+  <% if current_user %>
+    Signed in as <strong><%= current_user.fb_name %></strong>!
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+  <% end %>
+</div>
 

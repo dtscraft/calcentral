@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 source 'http://torquebox.org/rubygems'
 
+gem 'omniauth-facebook'
+
 # The core framework
 # https://github.com/rails/rails
 gem 'database_cleaner'
@@ -16,6 +18,7 @@ gem "activerecord-jdbcpostgresql-adapter", "~> 1.2.9"
 
 # H2 adapter
 gem "activerecord-jdbch2-adapter", "~> 1.2.9"
+gem "ruby-debug"
 
 # A JSON implementation as a Ruby extension in C
 # http://flori.github.com/json/

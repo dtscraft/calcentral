@@ -57,6 +57,11 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_user
+    @current_user ||= UserData.find(session[:fb_user_id]) if session[:fb_user_id]
+  end
+  helper_method :current_user
+
   def do_ping
     # rate limit so we don't check server status excessively often
     Rails.cache.fetch(

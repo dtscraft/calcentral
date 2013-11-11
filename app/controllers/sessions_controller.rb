@@ -2,9 +2,10 @@ class SessionsController < ApplicationController
   include ActiveRecordHelper
 
   def create
-    user = User.from_omniauth(env["omniauth.auth"])
+    user = UserData.from_omniauth(env["omniauth.auth"], session[:user_id])
     session[:fb_user_id] = user.id
-    redirect_to '/dashboard'
+    redirect_to '/dashboard', :notice => "Signed in to facebook!"
+
   end
 
   def lookup

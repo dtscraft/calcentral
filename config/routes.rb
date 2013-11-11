@@ -83,6 +83,10 @@ Calcentral::Application.routes.draw do
   match '/act_as' => 'sessions#act_as', :via => :post
   match '/stop_act_as' => 'sessions#stop_act_as', :via => :post
 
+  match '/auth/:provider/callback', to: 'sessions#create'
+  match '/auth/failure', to: redirect('/')
+  match '/signout', to: 'sessions#destroy', as: 'signout'
+
   # All the other paths should use the bootstrap page
   # We need this because we use html5mode=true
   #
@@ -90,8 +94,5 @@ Calcentral::Application.routes.draw do
   match '/*url' => 'bootstrap#index', :defaults => { :format => 'html' }
 
 
-  match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/failure', to: redirect('/')
-  match 'signout', to: 'sessions#destroy', as: 'signout'
 
 end

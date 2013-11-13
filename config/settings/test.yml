@@ -1,5 +1,12 @@
 # The test environment should require minimal configuration, and is the one targeted by travis.
 # Avoid creating too many dependencies (if any) on a test.local.yml
+postgres:
+  database: calcentral_test
+  username: calcentral_test
+  password: secret
+  host: localhost
+  port: 5432
+
 logger:
   level: <%= ENV['LOGGER_LEVEL'] || DEBUG %>
   stdout: <%= ENV['LOGGER_STDOUT'] || 'only' %>
@@ -24,10 +31,10 @@ oauth2:
   encryption: "aes-128-cbc"
 
 features:
-  act_as: true
-  bearfacts: true
-  financials: true
-  telebears: true
+  act_as: false
+  bearfacts: false
+  financials: false
+  telebears: false
 
 developer_auth:
   enabled: true

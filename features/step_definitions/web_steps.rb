@@ -38,6 +38,7 @@ Given /^there are upcoming events$/ do
             FactoryGirl.create(:event_with_club, club: club)
         }
     }
+    #assert Event.count == 15
 end
 
 
@@ -65,10 +66,7 @@ end
 
 
 When /^(?:|I )go to (.+)$/ do |page_name|
-  #visit "http://www.youtube.com"
-  #visit 'http://localhost:3000/dashboard'
   visit path_to(page_name)
-  #puts page.body if page_name == "the dashboard"
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
@@ -123,22 +121,31 @@ end
 When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
   attach_file(field, File.expand_path(path))
 end
-Then /^(?:|I )should see all events$/ do |club_names|
-    all(".event-result .event-name").map(&:text).each{ |event_name|
+Then /^(?:|I )should see all events$/ do
+    page.should have_selector('#sort .event-result')
+    all("#sort .event-result").count.should be(Event.count)
+    Event.all.map(&:name).each{ |event_name|
             step "I should see \"#{event_name}\""
     }
 end
 
 Then /^(?:|I )should see events for "([^"]*)"$/ do |club_names|
+    page.should have_selector('#sort .event-result')
     club_names.split(',').each{|name|
-        Club.find_by_name!(name.strip!).events.each{ |event|
+        name.strip!
+        Club.find_by_name!(name).events.each{ |event|
             step "I should see \"#{event.name}\""
         }
     }
 end
 Then /^(?:|I )should see events for categories "([^"]*)"$/ do |category_names|
-    category_names.split(',').each{|name|
-        Category.find_by_name!(name.strip!).events.each{ |event|
+    category_names =  category_names.scan(/[^,]+/)
+    page.should have_selector('#sort .event-result')
+    expect(all("#sort .event-result").count).to eq(Event.find_by_category(*category_names).count)
+    category_names.each{|name|
+        name.strip!
+        assert Category.find_by_name(name), "Category #{name} not found"
+        Event.find_by_category(name).each{|event|
             step "I should see \"#{event.name}\""
         }
     }

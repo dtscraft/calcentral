@@ -18,6 +18,7 @@ require 'faker'
 require 'simplecov'
 SimpleCov.start 'rails'
 require 'cucumber/rails'
+require 'rspec/expectations'
 Capybara.default_wait_time = 300
 #We need this to fix the random timeout error that we were seeing in CI.
 # May be related to: http://code.google.com/p/selenium/issues/detail?id=1439
@@ -63,9 +64,19 @@ ActionController::Base.allow_rescue = false
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
-  DatabaseCleaner.strategy = :transaction
+  DatabaseCleaner.strategy = :truncation
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+end
+
+Before do
+  Capybara.reset_sessions!
+  DatabaseCleaner.start
+end
+
+After do |scenario|
+  DatabaseCleaner.clean
+  FactoryGirl.reload
 end
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.

@@ -4,15 +4,17 @@ Feature: Filter events by category
     I want to see search results by match my category
 
 
-Background:
+  Background: Events have been created
     Given there are upcoming events
     When I am logged into calcentral
-    When I go to the dashboard
+    And I go to the dashboard
 
-Scenario: no categories are chosen all events should be visible
-    When I press "Search"
-    Then I should see all events
+        
+    Scenario: no categories are chosen all events should be visible
+        When I press "search-events"
+        Then I should see all events
 
-Scenario: restrict to events with 'social' or 'engineering' category
-    When I fill in "category" with "Category_1"
-    Then I should see events for categories "Category_1"
+    Scenario: search events belonging to one ore more categories
+        When I fill in "category_field" with "Category_1,Category_2"
+        And I press "search-events"
+        Then I should see events for categories "Category_1,Category_2"

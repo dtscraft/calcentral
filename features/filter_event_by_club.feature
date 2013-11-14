@@ -11,12 +11,11 @@ Background:
     And I go to the dashboard
 
 Scenario: no clubs are in the input field
-    Then I should see "My Events"
-    #When I press "search-events"
-    #Then I should see all events
+    When I press "search-events"
+    Then I should see all events
 
-Scenario: restrict to events belonging to "Club_1"
-    When I fill in "club" with "Club_1"
+Scenario: restrict to events for multiple clubs
+    When I fill in "club" with "Club_1,Club_2"
     And I press "search-events"
-    Then I should see events for "Club_1"
+    Then I should see events for "Club_1,Club_2"
 

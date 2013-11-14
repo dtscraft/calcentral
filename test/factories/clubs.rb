@@ -7,8 +7,8 @@ FactoryGirl.define do
     sequence(:description){Faker::Lorem.paragraphs(1+ Kernel.rand(5)).join("\n").slice(0,255) }
 
     factory :club_with_categories, :parent => :club do|club|
-    	categories {build_list :category,3}
-    end
+      categories {create_list :category,3}
+    end 
 
   end
 end

@@ -6,9 +6,9 @@ Feature: Opt-in only Login with Facebook
 
 Background: I am logged into calcentral
 
-Scenario: user finds facebook login link on event page
-    When I am on "events" 
-    Then I should see "Connect to Facebook"
+#Scenario: user finds facebook login link on event page
+    #When I am on "events" 
+    #Then I should see "Connect to Facebook"
 
 Scenario: user login into facebook with his facebook ID and password
     When I press "Connect to Facebook"

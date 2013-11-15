@@ -118,8 +118,14 @@ ActiveRecord::Schema.define(:version => 2013081414003322) do
     t.string   "uid"
     t.string   "preferred_name"
     t.datetime "first_login_at"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "fb_user"
+    t.string   "fb_provider"
+    t.string   "fb_name"
+    t.string   "fb_oauth_token"
+    t.datetime "fb_oauth_expires_at"
+    t.string   "fb_uid"
   end
 
   add_index "user_data", ["uid"], :name => "index_user_data_on_uid", :unique => true

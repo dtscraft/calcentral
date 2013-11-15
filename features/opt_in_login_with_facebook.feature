@@ -4,15 +4,17 @@ Feature: Opt-in only Login with Facebook
     I want to be able to additionally login into facebook through the CalCentral system.
 
 
-Background: I am logged into calcentral
+    Background: 
+        Given I am logged into calcentral
 
-Scenario: user finds facebook login link on event page
-    When I am on "events" 
-    Then I should see "Connect to Facebook"
+#Scenario: user finds facebook login link on event page
+    #When I am on the dashboard
+    #Then I should see "Connect to Facebook"
 
 Scenario: user login into facebook with his facebook ID and password
-    When I press "Connect to Facebook"
-    And I fill in "User ID"
-    And I fill in "Password"
-    And I press "Login"
-    Then I should see events imported from facebook
+    When I follow "sign_in"
+    #And I fill in "User ID"
+    #And I fill in "Password"
+    #And I press "Login"
+    #Then I should see events imported from facebook
+    Then I should see "Joe Boggs"

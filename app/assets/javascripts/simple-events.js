@@ -13,6 +13,7 @@ function render_event(event_json){
 }
 
 //on page load
+if ($("#callink-form").length > 0){
 $.get("/api/callink/events",
  function(data, textStatus, jqXHR){
     if(data.events){
@@ -28,6 +29,7 @@ $.get("/api/callink/events",
     }
  }
 )
+}
 
 //handle event search
 $(document).ready(function(){
@@ -38,12 +40,11 @@ $(document).ready(function(){
         $.get("/api/callink/events", $("#callink-form").serialize(),
             function(data, textStatus, jqXHR){
             if(data.events){
-                $('#sort').tablesorter();
-                console.log("test");
+                //$('#sort').tablesorter();
+                //console.log("test");
                 $.each(data.events, function(i, event_json){
                     render_event(event_json);
                 });
-                console.log("ab");
                 if(data.events.length === 0){
                         $("#no-events-placeholder").show();
                 } else {
